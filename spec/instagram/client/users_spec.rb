@@ -205,8 +205,8 @@ describe Instagram::Client do
 
           it "should return a list of recent media items for the given user" do
             recent_media = @client.user_recent_media(4)
-            recent_media.should be_a Array
-            recent_media.first.user.username.should == "shayne"
+            recent_media.data.should be_a Array
+            recent_media.data.first.user.username.should == "shayne"
           end
         end
 
