@@ -63,7 +63,7 @@ module Instagram
         options = args.last.is_a?(Hash) ? args.pop : {}
         id = args.first || "self"
         response = get("users/#{id}/follows", options)
-        response["data"]
+        #response["data"]
       end
     end
 
