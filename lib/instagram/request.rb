@@ -1,7 +1,7 @@
 module Instagram
   # Defines HTTP request methods
   module Request
-    attr_accessor :total_requests_limit, :remaining_requests
+    attr_accessor :requests_limit, :remaining_requests
     
     # Perform an HTTP GET request
     def get(path, options={}, raw=false, unformatted=false)
@@ -26,8 +26,8 @@ module Instagram
     private
 
     def set_request_limit_values(response)
-      @total_request_limit = response.headers["X-Ratelimit-Limit"]
-      @remaining_request_limit = response.headers["X-Ratelimit-Remaining"]
+      @requests_limit = response.headers["x-ratelimit-limit"]
+      @remaining_requests = response.headers["x-ratelimit-remaining"]
     end
 
     # Perform an HTTP request
