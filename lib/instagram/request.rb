@@ -26,8 +26,8 @@ module Instagram
     private
 
     def set_request_limit_values(response)
-      @requests_limit = response.headers["x-ratelimit-limit"]
-      @remaining_requests = response.headers["x-ratelimit-remaining"]
+      @requests_limit = response.headers["x-ratelimit-limit"].to_i
+      @remaining_requests = response.headers["x-ratelimit-remaining"].to_i
     end
 
     # Perform an HTTP request
