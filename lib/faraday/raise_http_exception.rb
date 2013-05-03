@@ -8,7 +8,11 @@ module FaradayMiddleware
       @app.call(env).on_complete do |response|
         case response[:status].to_i
         when 400
-          raise Instagram::BadRequest, error_message_400(response)
+          if response[:body] && response[:body].match(/OAuthRateLimitException/) 
+            raise Instagram::OAuthRateLimitException, error_message_400(response)
+          else
+            raise Instagram::BadRequest, error_message_400(response)
+          end
         when 404
           raise Instagram::NotFound, error_message_400(response)
         when 500
